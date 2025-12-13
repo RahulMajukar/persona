@@ -121,6 +121,16 @@ const Login = () => {
               )}
             </div>
 
+            <div className="flex items-center justify-between">
+              <div></div>
+              <Link
+                to="/forgot-password"
+                className="text-sm text-primary-600 hover:text-primary-700"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
             {loginError && (
               <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-sm text-red-600 text-center">{loginError}</p>

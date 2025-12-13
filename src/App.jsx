@@ -29,6 +29,8 @@ import UserDashboard from './pages/user/UserDashboard.jsx'
 
 // Auth Pages
 import Login from './pages/auth/Login.jsx'
+import Register from './pages/auth/Register.jsx'
+import ForgotPassword from './pages/auth/ForgotPassword.jsx'
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
             <Route path="pricing" element={<Pricing />} />
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
           </Route>
 
           {/* Admin Routes */}
