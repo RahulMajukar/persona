@@ -7,7 +7,6 @@ import {
   DollarSign, 
   Shield,
   LogOut,
-  Menu,
   X,
   ChevronLeft,
   ChevronRight,
@@ -15,22 +14,20 @@ import {
   UserPlus,
   Building,
   FileText,
-  Bell,
-  HelpCircle,
-  TrendingUp,
   Calendar,
   Folder,
   MessageSquare,
-  BarChart,
-  Database
-} from 'lucide-react'
+  BarChart} from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import LogoutModal from './modals/LogoutModal'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { user, logout } = useAuth()
   const location = useLocation()
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [activeStep, setActiveStep] = useState(1)
+  const [showLogoutModal, setShowLogoutModal] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const adminNavItems = [
     { 
@@ -146,10 +143,36 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     return currentItem?.step || 1
   }
 
-  const totalSteps = navItems.length
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true)
+  }
+
+  const handleLogoutConfirm = async () => {
+    setIsLoggingOut(true)
+    try {
+      await logout()
+    } finally {
+      setIsLoggingOut(false)
+      setShowLogoutModal(false)
+    }
+  }
+
+  const handleLogoutCancel = () => {
+    setShowLogoutModal(false)
+  }
 
   return (
     <>
+      {/* Logout Modal */}
+      <LogoutModal
+        isOpen={showLogoutModal}
+        onClose={handleLogoutCancel}
+        onConfirm={handleLogoutConfirm}
+        userName={user?.name}
+        userEmail={user?.email}
+        loading={isLoggingOut}
+      />
+
       {/* Overlay for mobile */}
       {isOpen && (
         <div 
@@ -284,21 +307,22 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           {/* Footer */}
           <div className="p-4 border-t border-gray-800 flex-none">
             <button
-              onClick={logout}
+              onClick={handleLogoutClick}
               className={`
                 flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} 
                 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 
                 text-gray-300 hover:text-white hover:shadow-lg transition-all duration-300
-                group
+                group hover:bg-gradient-to-r hover:from-red-900/20 hover:to-red-800/20
+                hover:border-l-4 hover:border-red-500
               `}
             >
               <div className={`relative ${isCollapsed ? '' : 'mr-3'}`}>
-                <LogOut className="h-5 w-5" />
+                <LogOut className="h-5 w-5 group-hover:text-red-400 transition-colors" />
               </div>
               {!isCollapsed && (
                 <div className="flex-1 text-left">
-                  <span className="font-medium">Logout</span>
-                  <p className="text-xs text-gray-400">Secure sign out</p>
+                  <span className="font-medium group-hover:text-red-300 transition-colors">Logout</span>
+                  <p className="text-xs text-gray-400 group-hover:text-red-400/70 transition-colors">Secure sign out</p>
                 </div>
               )}
             </button>
