@@ -31,6 +31,8 @@ import UserDashboard from './pages/user/UserDashboard.jsx'
 import Login from './pages/auth/Login.jsx'
 import Register from './pages/auth/Register.jsx'
 import ForgotPassword from './pages/auth/ForgotPassword.jsx'
+import PrivacyPolicy from './pages/landing/legal/PrivacyPolicy.jsx'
+import TermsConditions from './pages/landing/legal/TermsConditions.jsx'
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="terms" element={<TermsConditions />} />
+            <Route path="privacy" element={<PrivacyPolicy />} />
           </Route>
 
           {/* Admin Routes */}
