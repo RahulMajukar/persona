@@ -125,6 +125,30 @@ export const userService = {
   }
 };
 
+export const contactService = {
+  submit: async (contactData) => {
+    const response = await api.post('/contact/submit', contactData);
+    return response.data;
+  },
+
+  getAll: async () => {
+    const response = await api.get('/contact/all');
+    return response.data;
+  },
+
+  getByStatus: async (status) => {
+    const response = await api.get(`/contact/status/${status}`);
+    return response.data;
+  },
+
+  updateStatus: async (id, status, responseNotes) => {
+    const response = await api.put(`/contact/${id}/status`, null, {
+      params: { status, responseNotes }
+    });
+    return response.data;
+  }
+};
+
 // Team Service
 export const teamService = {
   getAll: async () => {

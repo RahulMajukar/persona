@@ -59,7 +59,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       description: 'Access control'
     },
     { 
-      path: '/admin/salary', 
+      path: '/admin/contact', 
       label: 'Salary Management', 
       icon: DollarSign,
       step: 5,
