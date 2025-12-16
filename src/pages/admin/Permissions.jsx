@@ -12,6 +12,7 @@ import {
   Trash2
 } from 'lucide-react'
 import DeleteModal from '../../components/modals/DeleteModal'
+import { DeleteConfirmation } from '../../components/modals/ConfirmModal'
 
 const Permissions = () => {
   const [permissions, setPermissions] = useState([
@@ -343,8 +344,7 @@ const Permissions = () => {
         </>
       )}
 
-      {/* Delete Modal */}
-      <DeleteModal
+      <DeleteConfirmation
         isOpen={deleteModal.isOpen}
         onClose={() => setDeleteModal({ isOpen: false, permissionId: null })}
         onConfirm={() => {
@@ -352,9 +352,8 @@ const Permissions = () => {
           setDeleteModal({ isOpen: false, permissionId: null })
         }}
         itemName={permissions.find(p => p.id === deleteModal.permissionId)?.name}
-        title="Delete Permission"
-        message="Are you sure you want to delete this permission? This action cannot be undone."
       />
+
     </div>
   )
 }

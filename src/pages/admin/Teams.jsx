@@ -10,6 +10,7 @@ import {
   MoreVertical
 } from 'lucide-react'
 import DeleteModal from '../../components/modals/DeleteModal'
+import { DeleteConfirmation } from '../../components/modals/ConfirmModal'
 
 const Teams = () => {
   const [teams, setTeams] = useState([
@@ -228,14 +229,11 @@ const Teams = () => {
         ))}
       </div>
 
-      {/* Delete Modal */}
-      <DeleteModal
+      <DeleteConfirmation
         isOpen={deleteModal.isOpen}
         onClose={() => setDeleteModal({ isOpen: false, teamId: null })}
         onConfirm={() => handleDeleteTeam(deleteModal.teamId)}
-        itemName={teams.find(t => t.id === deleteModal.teamId)?.name}
-        title="Delete Team"
-        message="Are you sure you want to delete this team? All team data will be permanently removed."
+        itemName={teams.find(t => t.id === deleteModal.teamId)?.name} 
       />
     </div>
   )

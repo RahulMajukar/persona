@@ -18,9 +18,11 @@ import {
   Folder,
   MessageSquare,
   BarChart,
-  Bell} from 'lucide-react'
+  Bell,
+  Settings2} from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import LogoutModal from './modals/LogoutModal'
+import ConfirmModal, { LogoutConfirmation } from './modals/ConfirmModal'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { user, logout } = useAuth()
@@ -73,13 +75,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       step: 6,
       description: 'Notification settings'
     },
-    { 
-      path: '/admin/analytics', 
-      label: 'Analytics', 
-      icon: BarChart,
-      step: 7,
-      description: 'Data insights'
-    },
+    // { 
+    //   path: '/admin/analytics', 
+    //   label: 'Analytics', 
+    //   icon: BarChart,
+    //   step: 7,
+    //   description: 'Data insights'
+    // },
     { 
       path: '/admin/settings', 
       label: 'System Settings', 
@@ -180,6 +182,22 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         userEmail={user?.email}
         loading={isLoggingOut}
       />
+
+       {/* <LogoutConfirmation
+  isOpen={showLogoutModal}
+   onClose={() => setShowLogoutModal(false)}
+  onConfirm={handleLogoutConfirm}
+/> */}
+
+{/* <ConfirmModal
+  isOpen={showLogoutModal}
+  onClose={handleLogoutCancel}
+  onConfirm={handleLogoutConfirm}
+  title="Custom Action"
+  message="Perform this custom action?"
+  icon={Settings2} // Pass any Lucide React icon
+  confirmColor="primary"
+/> */}
 
       {/* Overlay for mobile */}
       {isOpen && (

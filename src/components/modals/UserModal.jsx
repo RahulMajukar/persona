@@ -1,6 +1,6 @@
 // components/modals/UserModal.jsx
 import { useState, useEffect } from 'react'
-import { X, User, Mail, Phone, Shield, Building } from 'lucide-react'
+import { X, User, Mail, Phone, Shield, Building, Eye, EyeOff } from 'lucide-react'
 
 const UserModal = ({ isOpen, onClose, onSave, user, mode, roles, statuses, teams }) => {
   const [formData, setFormData] = useState({
@@ -18,6 +18,8 @@ const UserModal = ({ isOpen, onClose, onSave, user, mode, roles, statuses, teams
   
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -299,14 +301,24 @@ const UserModal = ({ isOpen, onClose, onSave, user, mode, roles, statuses, teams
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Password *
                       </label>
-                      <input
-                        type="password"
-                        value={formData.password}
-                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
-                          errors.password ? 'border-red-300' : 'border-gray-300'
-                        }`}
-                      />
+                      <div className="relative">
+                        <input
+                          type={showPassword ? 'text' : 'password'}
+                          value={formData.password}
+                          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                          className={`w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                            errors.password ? 'border-red-300' : 'border-gray-300'
+                          }`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(s => !s)}
+                          className="absolute inset-y-0 right-2 flex items-center text-gray-500 hover:text-gray-700"
+                          aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        >
+                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
+                      </div>
                       {errors.password && (
                         <p className="mt-1 text-sm text-red-600">{errors.password}</p>
                       )}
@@ -316,14 +328,24 @@ const UserModal = ({ isOpen, onClose, onSave, user, mode, roles, statuses, teams
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Confirm Password *
                       </label>
-                      <input
-                        type="password"
-                        value={formData.confirmPassword}
-                        onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
-                          errors.confirmPassword ? 'border-red-300' : 'border-gray-300'
-                        }`}
-                      />
+                      <div className="relative">
+                        <input
+                          type={showConfirmPassword ? 'text' : 'password'}
+                          value={formData.confirmPassword}
+                          onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                          className={`w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                            errors.confirmPassword ? 'border-red-300' : 'border-gray-300'
+                          }`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowConfirmPassword(s => !s)}
+                          className="absolute inset-y-0 right-2 flex items-center text-gray-500 hover:text-gray-700"
+                          aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                        >
+                          {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
+                      </div>
                       {errors.confirmPassword && (
                         <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
                       )}
