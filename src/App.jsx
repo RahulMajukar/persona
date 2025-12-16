@@ -34,6 +34,7 @@ import ForgotPassword from './pages/auth/ForgotPassword.jsx'
 import PrivacyPolicy from './pages/landing/legal/PrivacyPolicy.jsx'
 import TermsConditions from './pages/landing/legal/TermsConditions.jsx'
 import AdminContactManagement from './pages/admin/AdminContactManagement.jsx'
+import NotificationsMgmt from './pages/admin/NotificationsMgmt.jsx'
 
 function App() {
   return (
@@ -64,7 +65,8 @@ function App() {
             <Route path="teams" element={<Teams />} />
             <Route path="permissions" element={<Permissions />} />
             <Route path="salary" element={<SalaryMgmt />} />
-            <Route path="contact" element={<AdminContactManagement />} />
+            <Route path="contacts" element={<AdminContactManagement />} />
+            <Route path="notifications" element={<NotificationsMgmt />} />
           </Route>
 
           {/* Manager Routes */}

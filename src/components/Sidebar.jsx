@@ -17,7 +17,8 @@ import {
   Calendar,
   Folder,
   MessageSquare,
-  BarChart} from 'lucide-react'
+  BarChart,
+  Bell} from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import LogoutModal from './modals/LogoutModal'
 
@@ -59,24 +60,31 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       description: 'Access control'
     },
     { 
-      path: '/admin/contact', 
-      label: 'Salary Management', 
-      icon: DollarSign,
+      path: '/admin/contacts', 
+      label: 'Contact Management', 
+      icon: MessageSquare,
       step: 5,
-      description: 'Payroll processing'
+      description: 'Manage contacts'
+    },
+    { 
+      path: '/admin/notifications', 
+      label: 'Notifications', 
+      icon: Bell,
+      step: 6,
+      description: 'Notification settings'
     },
     { 
       path: '/admin/analytics', 
       label: 'Analytics', 
       icon: BarChart,
-      step: 6,
+      step: 7,
       description: 'Data insights'
     },
     { 
       path: '/admin/settings', 
       label: 'System Settings', 
       icon: Settings,
-      step: 7,
+      step: 8,
       description: 'Platform configuration'
     },
   ]
